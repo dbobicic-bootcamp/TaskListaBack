@@ -17,7 +17,7 @@ exports.list_all_todo = (req, res) => {
 
 };
 exports.add_todo = (req, res) => {
-    if (!req.body.user) {
+    if (!req.body.id) {
         return res.status(400).send({
             success: 'false',
             message: 'user is required'
@@ -43,10 +43,12 @@ exports.add_todo = (req, res) => {
         }
         todos.push(obj);
     }
-    todos[obj].items.push(title);
-
-    var fs = require('fs');
-    fs.writeFile('todo.json', json, 'utf8', callback);
+    obj.items.push({title:title})
+    //todos[obj].items.push(title);
+    console.log(todos);
+    fs.writeFile('todo.json', JSON.stringify(todos), 'utf8',()=>{
+        console.log('It Works!');
+    });
     console.log(`User ${obj} updates`);
     res.status(200).send({
         success: 'true',
