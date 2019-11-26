@@ -32,6 +32,7 @@ router.get('/todo',todo.list_all_todo);
 
 router.post('/todo',todo.get_todo);
 router.put('/todo',todo.add_todo);
+router.delete('/todo',todo.delete_todo);
 
 
 // router.get('/pizzas',(req,res)=>{  });
